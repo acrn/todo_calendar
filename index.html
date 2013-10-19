@@ -32,8 +32,8 @@
       <div class="row" ng-repeat="week in weeks">
         <div class="col-xs-3">
           <div>&nbsp;</div>
-          <div class="todo-item" ng-repeat="todoItem in todoItems">
-            {{todoItem}}
+          <div class="daily-item" ng-repeat="dailyItem in dailyItems">
+            {{dailyItem}}
           </div>
         </div>
         <!--TODO: The &&...|| thing is ugly. There's supposedly a ternary
@@ -44,8 +44,8 @@
           {{day == 0 && 'not-in-month' || 'in-month'}}"
           ng-repeat="day in week">
           <div class="day-number">{{day}}</div>
-          <div class="{{day == 0 && 'not-today' || 'todo-today'}}"
-            ng-repeat="todoItem in todoItems">
+          <div class="{{day == 0 && 'not-today' || 'daily-item-today'}}"
+            ng-repeat="dailyItem in dailyItems">
             &nbsp;
           </div>
         </div>
@@ -54,10 +54,10 @@
 
       </div>
     </div>
-    <div id="todo-input">
-      <h4>Things that need doing</h4>
-      <input autofocus="true" ng-change="todoInputChanged()"
-             ng-model="todoInputValue">
+    <div id="daily-item-input">
+      <h4>Daily labels:</h4>
+      <input autofocus="true" ng-change="dailyInputChanged()"
+             ng-model="dailyInputValue">
     </div>
     <script src="libs/underscore/underscore-min.js"></script>
     <script src="libs/angular/angular.min.js"></script>

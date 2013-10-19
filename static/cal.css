@@ -17,7 +17,7 @@ h1.month-name {
   text-align: center;
 }
 
-div.todo-item {
+div.daily-item {
   text-align: right;
 }
 
@@ -37,11 +37,11 @@ div.not-in-month {
   visibility: hidden;
 }
 
-div.todo-today {
+div.daily-item-today {
   border-top: 1px solid #eee;
 }
 
-#todo-input {
+#daily-item-input {
   text-align: center;
 }
 
@@ -50,7 +50,7 @@ div.todo-today {
     display: none;
   }
 
-  #todo-input {
+  #daily-item-input {
     display: none;
   }
 }

@@ -57,15 +57,15 @@ calApp.controller('CalCtrl', function CalCtrl($scope, $location) {
     parseInt(search.year) : today.getFullYear();
   $scope.month = 'month' in search ?
     parseInt(search.month) - 1: today.getMonth();
-  $scope.todoInputValue = 'todo' in search ?
-    search.todo.split(/\s*,\s*/).join(', ') : "eat, work, sleep";
+  $scope.dailyInputValue = 'items' in search ?
+    search.items.split(/\s*,\s*/).join(', ') : "eat, work, sleep";
 
-  // call when $scope.year, $scope.month or $scope.todoItems changes
+  // call when $scope.year, $scope.month or $scope.dailyItems changes
   var updatePath = function() {
     $location.search({
       'year': $scope.year,
       'month': $scope.month + 1,
-      'todo': $scope.todoItems
+      'items': $scope.dailyItems
     });
   }
 
@@ -83,10 +83,10 @@ calApp.controller('CalCtrl', function CalCtrl($scope, $location) {
     updatePath();
   }
 
-  // call when $scope.todoInputValue changes
-  $scope.todoInputChanged = function() {
-    $scope.todoItems = _.compact(
-        _.map($scope.todoInputValue.split(/\s*,\s*/), function(s) {
+  // call when $scope.dailyInputValue changes
+  $scope.dailyInputChanged = function() {
+    $scope.dailyItems = _.compact(
+        _.map($scope.dailyInputValue.split(/\s*,\s*/), function(s) {
             return s;
         })
     );
@@ -94,7 +94,7 @@ calApp.controller('CalCtrl', function CalCtrl($scope, $location) {
   }
 
   // initialize
-  $scope.todoInputChanged();
+  $scope.dailyInputChanged();
   updateCalendar();
   // both of the calls above have messed with the path. Reset it.
   $location.search(search);
