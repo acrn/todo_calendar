@@ -27,29 +27,28 @@ calApp.controller('CalCtrl', function CalCtrl($scope, $location) {
   //           [7, 8, ...      , 13],
   //           ...
   //           [28, 29, 30, 31, 0, 0, 0]]
-  $scope.buildWeeks = function(year, month) {
-    // Make dummy values from the last month to make the calendar start with a
-    // full 7 day week. Note that [Sunday.getDay() == 0], i think that's an
-    // american thing.
+  var buildWeeks = function(year, month) {
+    // Add zeroes to make the calendar start with a full 7 day week.
     var firstWeekdayOfMonth = new Date(year, month, 1).getDay();
+    // Sunday.getDay() == 0, I think that's an american thing.
     var firstWeekPadding = (firstWeekdayOfMonth == 0
         ? 6 : firstWeekdayOfMonth - 1);
-    result = [_.times(firstWeekPadding, function() {
+    var weeks = [_.times(firstWeekPadding, function() {
           return 0;
         })];
     // Add the days of the month
     var numDaysInMonth = new Date(year, month+1, 0).getDate();
     _.each(_.range(1, numDaysInMonth + 1), function(i) {
-      if (_.last(result).length > 6) {
-        result.push([]);
+      if (_.last(weeks).length > 6) {
+        weeks.push([]);
       }
-      _.last(result).push(i);
+      _.last(weeks).push(i);
     });
-    // Pad the last week, this isn't really necessary
-    _.times(7 - _.last(result).length, function() {
-      _.last(result).push(0);
+    // Pad the last week with zeroes, this isn't really necessary
+    _.times(7 - _.last(weeks).length, function() {
+      _.last(weeks).push(0);
     });
-    return result;
+    return weeks;
   }
 
   var today = new Date();
@@ -73,13 +72,13 @@ calApp.controller('CalCtrl', function CalCtrl($scope, $location) {
   // call when $scope.year or $scope.month changes
   var updateCalendar = function() {
     $scope.monthName = monthNames[$scope.month];
-    $scope.weeks = $scope.buildWeeks($scope.year, $scope.month);
+    $scope.weeks = buildWeeks($scope.year, $scope.month);
   }
 
   $scope.rollMonth = function(n) {
-    var someDay = new Date($scope.year, $scope.month + n, 1);
-    $scope.year = someDay.getFullYear();
-    $scope.month = someDay.getMonth();
+    var newDate = new Date($scope.year, $scope.month + n, 1);
+    $scope.year = newDate.getFullYear();
+    $scope.month = newDate.getMonth();
     updateCalendar();
     updatePath();
   }
