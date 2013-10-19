@@ -53,19 +53,19 @@ calApp.controller('CalCtrl', function CalCtrl($scope, $location) {
 
   var today = new Date();
   var search = $location.search();
-  $scope.year = 'year' in search ?
+  $scope.year = 'y' in search ?
     parseInt(search.year) : today.getFullYear();
-  $scope.month = 'month' in search ?
+  $scope.month = 'm' in search ?
     parseInt(search.month) - 1: today.getMonth();
-  $scope.dailyInputValue = 'items' in search ?
+  $scope.dailyInputValue = 'i' in search ?
     search.items.split(/\s*,\s*/).join(', ') : "eat, work, sleep";
 
   // call when $scope.year, $scope.month or $scope.dailyItems changes
   var updatePath = function() {
     $location.search({
-      'year': $scope.year,
-      'month': $scope.month + 1,
-      'items': $scope.dailyItems
+      'y': $scope.year,
+      'm': $scope.month + 1,
+      'i': $scope.dailyItems
     });
   }
 
