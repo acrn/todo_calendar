@@ -1,0 +1,56 @@
+/*github.com/oscarsen*/
+
+#header-div {
+  text-align: center;
+}
+
+BODY {
+  font-family: Georgia, Serif, Times;
+}
+
+span.day-name {
+  text-align: center;
+  font-style: italic;
+}
+
+h1.month-name {
+  text-align: center;
+}
+
+div.todo-item {
+  text-align: right;
+}
+
+div.date-field {
+  border-top: 1px solid #aaa;
+  border-left: 1px solid #aaa;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  border-radius:3px;
+}
+
+div.day-number {
+  text-align: right;
+}
+
+div.not-in-month {
+  visibility: hidden;
+}
+
+div.todo-today {
+  border-top: 1px solid #eee;
+}
+
+#todo-input {
+  text-align: center;
+}
+
+@media print {
+  a.month-nav {
+    display: none;
+  }
+
+  #todo-input {
+    display: none;
+  }
+}
