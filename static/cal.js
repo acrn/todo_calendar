@@ -56,7 +56,7 @@ calApp.controller('CalCtrl', function CalCtrl($scope, $location) {
   $scope.year = 'year' in search ?
     parseInt(search.year) : today.getFullYear();
   $scope.month = 'month' in search ?
-    parseInt(search.month): today.getMonth();
+    parseInt(search.month) - 1: today.getMonth();
   $scope.todoInputValue = 'todo' in search ?
     search.todo.split(/\s*,\s*/).join(', ') : "eat, work, sleep";
 
@@ -64,7 +64,7 @@ calApp.controller('CalCtrl', function CalCtrl($scope, $location) {
   var updatePath = function() {
     $location.search({
       'year': $scope.year,
-      'month': $scope.month,
+      'month': $scope.month + 1,
       'todo': $scope.todoItems
     });
   }
