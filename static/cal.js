@@ -53,12 +53,10 @@ calApp.controller('CalCtrl', function CalCtrl($scope, $location) {
 
   var today = new Date();
   var search = $location.search();
-  $scope.year = 'y' in search ?
-    parseInt(search.year) : today.getFullYear();
-  $scope.month = 'm' in search ?
-    parseInt(search.month) - 1: today.getMonth();
+  $scope.year = 'y' in search ?  parseInt(search.y) : today.getFullYear();
+  $scope.month = 'm' in search ?  parseInt(search.m) - 1: today.getMonth();
   $scope.dailyInputValue = 'i' in search ?
-    search.items.split(/\s*,\s*/).join(', ') : "eat, work, sleep";
+    search.i.split(/\s*,\s*/).join(', ') : "eat, work, sleep";
 
   // call when $scope.year, $scope.month or $scope.dailyItems changes
   var updatePath = function() {
